@@ -31,7 +31,18 @@ class  Conta:
         self.__saldo += valor
 
     def saca(self, valor):
-        self.__saldo -= valor
+        if(valor <= (self.__saldo + self.__limite)):
+            if valor <= self.__saldo:
+                self.__saldo -= valor
+            else:
+                resto = valor - self.__saldo
+                self.__saldo = 0
+                self.__limite = -resto
+        else:
+            print("Você não tem saldo e nem limite suficiente para essa transação!")
+
+
+        
 
     def transfere(self, contadestino, valor):
         if (self.__saldo+self.__limite) - valor >= 0:
